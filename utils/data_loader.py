@@ -12,7 +12,7 @@ class TimeSeriesDataset(Dataset):
         return len(self.data) - self.seq_length
 
     def __getitem__(self, index):
-        x = self.data[index:index+self.seq_length, :-1]  # 取前 seq_length 个时间步作为输入
+        x = self.data[index:index+self.seq_length, :]  # 取前 seq_length 个时间步作为输入
         y = self.data[index+self.seq_length, -1]  # 取下一个时间步作为预测目标
         return torch.tensor(x, dtype=torch.float32), torch.tensor(y, dtype=torch.float32)
 
